@@ -1,9 +1,13 @@
 import logging
+import os
 from fastapi import FastAPI, UploadFile, File, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(filename='../logs/app.log', level=logging.DEBUG,    
+logs_directory = '../logs'
+if not os.path.exists(logs_directory):
+        os.makedirs(logs_directory)
+logging.basicConfig(filename=os.path.join(logs_directory,'app.log'), level=logging.DEBUG,    
                     format='%(asctime)s - %(levelname)s - %(message)s', 
                     datefmt='%Y-%m-%d %H:%M:%S')
 

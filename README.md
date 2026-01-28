@@ -14,6 +14,10 @@ FastAPI (backend) and Streamlit (frontend).
 - FastAPI
 - Streamlit
 
+## Project Status
+v1.0.0 — Stable API and UI with dummy inference.
+Future versions will replace dummy logic with real multimodal models.
+
 ## How to Run
 
 ### Backend
