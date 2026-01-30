@@ -14,15 +14,22 @@ st.title("ShelfSence AI",
 left_column, right_column = st.columns(2)
 
 def call_backend_API(api_url, uploaded_file, store_id, aisle_id, timestamp):
+    data = {
+                "store_id": store_id,
+                "aisle_id": aisle_id,
+                "timestamp": timestamp
+            }
+    files = {
+                "file": (
+                    uploaded_file.name,
+                    uploaded_file,
+                    uploaded_file.type
+                    )
+            }
     response = requests.post(
-                API_URL,
-                files={
-                    "file": (
-                        uploaded_file.name,
-                        uploaded_file,
-                        uploaded_file.type
-                        )
-                    }
+                api_url,
+                data = data,
+                files = files
                 )
     if response.status_code == 200:
         st.success("Analysis complete")
@@ -44,14 +51,14 @@ def default_text_gray():
 def store_id_input_box():
     store_id = st.text_input("Store ID", placeholder="(Optional)")
     default_text_gray()
-    if store_id == None : store_id = 0
+    if not store_id : store_id = "0"
     
     return store_id
 
 def aisle_id_input_box():
     aisle_id = st.text_input("Aisle ID", placeholder="(Optional)")
     default_text_gray()
-    if aisle_id == None : aisle_id = 0
+    if not aisle_id : aisle_id = "0"
     
     return aisle_id
 
@@ -61,7 +68,7 @@ def timestamp_input_box():
         value = None,    
     )
     if upload_time == None: 
-        upload_time = datetime.datetime.now().strftime("%Y-%M-%D %H:%m")
+        upload_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
     return upload_time
 
