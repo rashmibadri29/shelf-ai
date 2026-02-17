@@ -1,0 +1,662 @@
+{
+    "Ceres Juices Juice Peach, 33.8 Fl Oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Organic Valley Cream Cheese - 8oz,jpeg": {
+        "min": 0,
+        "max": 4
+    },
+    "Kerrygold pure irish butter ": {
+        "min": 2,
+        "max": 6
+    },
+    "Almond Breeze Unsweetened Original Shelf-Stable Almondmilk 32 oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Hood Heavy Cream - 1pt, Cream": {
+        "min": 0,
+        "max": 4
+    },
+    "Simple cranberry cocktail juice": {
+        "min": 0,
+        "max": 4
+    },
+    " Cant Believe Its Not Butter Original Yellow Spread 15 Ounce": {
+        "min": 0,
+        "max": 4
+    },
+    "Daisy Pure & Natural Sour Cream - 16oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Pacific Foods Original Organic Almond Milk Plant Based Milk 32 oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Lactaid 2% reduced fat lactose free milk": {
+        "min": 2,
+        "max": 6
+    },
+    "Reddi-wip whipping cream": {
+        "min": 0,
+        "max": 4
+    },
+    "Minute maid tropical punch juice": {
+        "min": 0,
+        "max": 4
+    },
+    "Silk chocolate almond milk": {
+        "min": 2,
+        "max": 6
+    },
+    "Dream Oat Origianl Non-Dairy Beverage 32oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Nestea": {
+        "min": 2,
+        "max": 6
+    },
+    "Stonyfield probiotic whole milk yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Chobani Oat Organic Oat Milk Plain Oat Drink 52 fl oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Cream Cheese Spread - Puck, 240g": {
+        "min": 0,
+        "max": 4
+    },
+    "Nestle Nesquik Chocolate Low Fat Milk, 14 oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Smart Juices Smart Juice 100% Juice, 33.8 oz": {
+        "min": 0,
+        "max": 4
+    },
+    "The Devon Cream Company English Double Devon Cream 6.0 OZ": {
+        "min": 0,
+        "max": 4
+    },
+    "Parkay vegetable oil spread": {
+        "min": 0,
+        "max": 4
+    },
+    "Daiya- Mozzarella Style Shreds, 8 Oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Chobani zero sugar greek yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Daisy cottage cheese": {
+        "min": 0,
+        "max": 4
+    },
+    "Fage Fat-Free Greek Yogurt With Blueberry - 5.3oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Silk almond creamer": {
+        "min": 0,
+        "max": 4
+    },
+    "Anderson Erickson Lite Sour Cream - 16oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Light fit nonfat vanilla greek yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Kraft Easy Mac Cups, 2.05 Ounce": {
+        "min": 2,
+        "max": 6
+    },
+    "Tuscan Dairy Farms Dairy Pure Heavy Cream, 1 Quart": {
+        "min": 0,
+        "max": 4
+    },
+    "Almond Breeze original almond milk": {
+        "min": 2,
+        "max": 6
+    },
+    "Yoplait Go-Gurt Low Fat Yogurt, 32 Count": {
+        "min": 2,
+        "max": 6
+    },
+    "Stonyfield organic flavored yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Blue bonnet vegetable oil spread": {
+        "min": 0,
+        "max": 4
+    },
+    "Got Milk? Magic Milk Vanilla Flavoring Straws, 0.16 Oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Sabor latino probiotic yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Horizon Organic Whole Milk 1 gal": {
+        "min": 2,
+        "max": 6
+    },
+    "a2 Milk Whole Vitamin D Ultra-Pasteurized - 59 fl oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Lactaid lactose free milk": {
+        "min": 2,
+        "max": 6
+    },
+    "Nido Fortificada Dry Whole Milk Powder 1.76 lb Canister": {
+        "min": 2,
+        "max": 6
+    },
+    "Peach juice": {
+        "min": 0,
+        "max": 4
+    },
+    "Elmhurst Milked Almonds Milk Substitute - 1qt": {
+        "min": 2,
+        "max": 6
+    },
+    "Green Mountain Farms Greek Cream Cheese - 8oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Almond Breeze Unsweetened Vanilla Almond Milk 96 fl oz": {
+        "min": 2,
+        "max": 6
+    },
+    "\u001bChobani coffee creamer": {
+        "min": 0,
+        "max": 4
+    },
+    "Organic Valley Rich and Creamy Sour Cream - 1lb": {
+        "min": 0,
+        "max": 4
+    },
+    "Horizon organic whole milk": {
+        "min": 2,
+        "max": 6
+    },
+    "Califia Farms extra creamy almond milk": {
+        "min": 0,
+        "max": 4
+    },
+    "Juicy Juice 80 Juicy Juice 100% Juice Grape 24:10Floz": {
+        "min": 0,
+        "max": 4
+    },
+    "Daisy no salt added cottage cheese": {
+        "min": 0,
+        "max": 4
+    },
+    "Tropicana orange juice": {
+        "min": 0,
+        "max": 4
+    },
+    "Elmhurst Oat Milk Barista, 32 fl oz": {
+        "min": 2,
+        "max": 6
+    },
+    "The Greek Gods Traditional Plain Greek Yogurt - 24oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Kerrygold pure irish unsalted butter": {
+        "min": 2,
+        "max": 6
+    },
+    "Breakstone's cottage cheese": {
+        "min": 0,
+        "max": 4
+    },
+    "Lactaid lactose free cottage cheese": {
+        "min": 0,
+        "max": 4
+    },
+    "Elmhurst Milked Oats Milk, 32 fl oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Yoplait vanilla yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Minute maid strawberry lemonade juice": {
+        "min": 0,
+        "max": 4
+    },
+    "Anderson Erickson Dairy Whole Milk Almond Sweet Cream Yogurt - 5.3oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Silk Shelf-Stable Unsweetened Vanilla Almond Milk 1 Quart": {
+        "min": 2,
+        "max": 6
+    },
+    "Rosa Brothers Milk Co. Heavy Cream - 1pt": {
+        "min": 0,
+        "max": 4
+    },
+    "Oatly The Original Oat Milk Half Gallon 64 fl oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Daiya Cream Cheese Spread - Strawberry": {
+        "min": 0,
+        "max": 4
+    },
+    "Lactaid Lactose-Free Whole Milk - 0.5gal": {
+        "min": 2,
+        "max": 6
+    },
+    "Coffee mate cafe mocha": {
+        "min": 2,
+        "max": 6
+    },
+    "\u001bOatly lowfat oat milk": {
+        "min": 2,
+        "max": 6
+    },
+    "DairyPure Heavy Whipping Cream - 8oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Country Crock Original Vegetable Oil Spread-15 oz.jpeg": {
+        "min": 0,
+        "max": 4
+    },
+    "Oatly choco-latte oat milk": {
+        "min": 2,
+        "max": 6
+    },
+    "Reddi-wip extra creamy whipping cream": {
+        "min": 0,
+        "max": 4
+    },
+    "L & A All Juice, Cherry, 32 Fl Oz, 1 Ct": {
+        "min": 0,
+        "max": 4
+    },
+    "Califia Farms Barista Blend Oat Milk - 1qt": {
+        "min": 2,
+        "max": 6
+    },
+    "Simply lemonade juice": {
+        "min": 0,
+        "max": 4
+    },
+    "Elmhurst Milked Cashews Milk Substitute - 1qt": {
+        "min": 2,
+        "max": 6
+    },
+    "Lifeway strawberry Kafir": {
+        "min": 2,
+        "max": 6
+    },
+    "Califia Farms Oat Vanilla Creamer - 25 fl oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Minute maid peach punch": {
+        "min": 2,
+        "max": 6
+    },
+    "Land O'Lake unsalted butter": {
+        "min": 2,
+        "max": 6
+    },
+    "Tofutti Brands Tofutti Better than Cream Cheese Imitation Cream Cheese, 8 oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Shamrock Farms Sour Cream - 16oz": {
+        "min": 0,
+        "max": 4
+    },
+    "FAGE Total 0% Milkfat Blueberry Acai Greek Yogurt - 5.3oz": {
+        "min": 2,
+        "max": 6
+    },
+    "DairyPure Heavy Whipping Cream - 1qt": {
+        "min": 0,
+        "max": 4
+    },
+    "Great Value whole milk 1 gallon": {
+        "min": 2,
+        "max": 6
+    },
+    "Face 5% fat greek yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Cannon whole milk yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Kerry Gold Pure Irish Butter - 8oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Daisy cottage cheese with pineapple": {
+        "min": 0,
+        "max": 4
+    },
+    "Oasis orange juice": {
+        "min": 0,
+        "max": 4
+    },
+    "Blue bonnet vvegetable oil spread": {
+        "min": 0,
+        "max": 4
+    },
+    "Lifeway peach kafir": {
+        "min": 2,
+        "max": 6
+    },
+    "Alexandre organic A2 milk 59 oz": {
+        "min": 2,
+        "max": 6
+    },
+    "\u001bTropicana apple juice": {
+        "min": 0,
+        "max": 4
+    },
+    "Daiya Dairy Cream Cheese Style Plain Spread, 8 Oz.": {
+        "min": 0,
+        "max": 4
+    },
+    "Stonyfield organic greek yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Lactaid lactose free whole milk": {
+        "min": 2,
+        "max": 6
+    },
+    "Land O'lakes butter with canola oil": {
+        "min": 2,
+        "max": 6
+    },
+    "Great value low fat milk 0.5 gallon": {
+        "min": 2,
+        "max": 6
+    },
+    "Coffee mate french vanila": {
+        "min": 2,
+        "max": 6
+    },
+    "Almond breeze chocolate almond milk": {
+        "min": 2,
+        "max": 6
+    },
+    "Galbani Marinated Fresh Mozzarella Cheese, 12 oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Neutral whole milk 64 oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Silk original almond milk": {
+        "min": 2,
+        "max": 6
+    },
+    "Coconut Dream Enriched Coconut Drink, Original, 32 Ounce": {
+        "min": 0,
+        "max": 4
+    },
+    "Country Crock vegetable oil spread": {
+        "min": 0,
+        "max": 4
+    },
+    "Move Over Butter Sweet Cream Buttermilk Whipped Vegetable Oil Spread 10.05 oz Bowl": {
+        "min": 0,
+        "max": 4
+    },
+    "Fruittopia strawberry passion awareness juice": {
+        "min": 0,
+        "max": 4
+    },
+    "Cabot greek yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Amazing Yogurt Original": {
+        "min": 2,
+        "max": 6
+    },
+    "Belgioioso Fresh Mozzarella All-Natural Sliced Cheese - 16oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Kite Hill Original Almond Milk Cream Cheese Spread - 8oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Simply lemonade with raspberry juice": {
+        "min": 0,
+        "max": 4
+    },
+    "Chobani strawberry greek yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Fruittopia raspberry kiwi karma juice": {
+        "min": 0,
+        "max": 4
+    },
+    "Great value 1% milk 0.5 oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Chobani original oat milk": {
+        "min": 2,
+        "max": 6
+    },
+    "Merve plain yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Oasis health break strawberry kiwi juice": {
+        "min": 0,
+        "max": 4
+    },
+    "Byrne Dairy Byrne Cherry Yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Heavy Whipping Cream - 1pt - Good & Gather": {
+        "min": 0,
+        "max": 4
+    },
+    "Brown Cow Farm - Yogurt- Plain Cream Top 32.00 oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Gerber Apple Juice Fruit Juice 32 fl oz Bottle": {
+        "min": 0,
+        "max": 4
+    },
+    "Activa probiotic peach yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Kite Hill Chive Almond Milk Cream Cheese Spread - 8oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Pillsbury Baking Creamy Supreme Cheese Frosting - 16oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Elmhurst Milked Walnut Milk, 32 fl oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Kemps Smooth & Creamy Light Sour Cream - 16oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Tropicana peach juice": {
+        "min": 0,
+        "max": 4
+    },
+    "Organic valley whole milk": {
+        "min": 2,
+        "max": 6
+    },
+    "Probugs organic creamy orange kefir": {
+        "min": 0,
+        "max": 4
+    },
+    "Stonyfield Organic Smooth & Creamy Whole Milk French Vanilla Yogurt - 32oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Darigold Whole Milk - 1gal": {
+        "min": 2,
+        "max": 6
+    },
+    "Greek gods honey vanilla greek yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Gerber 2nd Foods - Yogurt Blends - Banana 14.02oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Go Veggie Vegan Classic Plain Cream Cheese - 8oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Elmhurst Milked Hazelnuts Milk Substitute - 1qt": {
+        "min": 2,
+        "max": 6
+    },
+    "Once upon a farm fruit yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Yakult probiotic drink": {
+        "min": 0,
+        "max": 4
+    },
+    "65 by Whole Foods Market Organic Sweetened Condensed Milk 14 Ounce 14 Ounce": {
+        "min": 2,
+        "max": 6
+    },
+    "Oasis peach juice": {
+        "min": 0,
+        "max": 4
+    },
+    "Almond breeze unsweetened almond milk": {
+        "min": 2,
+        "max": 6
+    },
+    "Probugs orgnaic strawnana kefir": {
+        "min": 0,
+        "max": 4
+    },
+    "Simply lemonade with strawberry juice": {
+        "min": 0,
+        "max": 4
+    },
+    "The laughing cow triangle cheese": {
+        "min": 0,
+        "max": 4
+    },
+    "Hood Sour Cream - 16oz, Sour Cream": {
+        "min": 0,
+        "max": 4
+    },
+    "Velveeta ORIGINAL Pasteurized Cheese Loaf 32oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Lifeway bueberry kafir": {
+        "min": 2,
+        "max": 6
+    },
+    "Cabot vanilla greek yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Planet Oat Original Dairy Free Oatmilk 52 oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Horizon reduced fat milk": {
+        "min": 2,
+        "max": 6
+    },
+    "Planet Oat oat milk chocolate": {
+        "min": 2,
+        "max": 6
+    },
+    "Dannon Whole Milk Vanilla Yogurt, 5.3 Oz.": {
+        "min": 2,
+        "max": 6
+    },
+    "Siggi's Strained Whole Milk Vanilla Icelandic Style Yogurt - 4.4oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Chobani nonfat greek yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Almond breeze vanilla almond milk": {
+        "min": 2,
+        "max": 6
+    },
+    "A2 whole milk 64 oz": {
+        "min": 2,
+        "max": 6
+    },
+    "Horizon Organic Heavy Whipping Cream, 1 Pint": {
+        "min": 0,
+        "max": 4
+    },
+    "Producers Dairy Heavy Whipping Cream, 1 Pint": {
+        "min": 0,
+        "max": 4
+    },
+    "Land O'Lakes salted butter": {
+        "min": 2,
+        "max": 6
+    },
+    "Philadelphia - Cream Cheese Spread - Original 8.00 oz": {
+        "min": 0,
+        "max": 4
+    },
+    "Greek gods nonfat greek yogurt": {
+        "min": 2,
+        "max": 6
+    },
+    "Meadow Gold Sour Cream, 24 Oz.": {
+        "min": 0,
+        "max": 4
+    },
+    "Planet oat caramel oat milk creamer": {
+        "min": 0,
+        "max": 4
+    },
+    "Face nonfat greek yogurt": {
+        "min": 2,
+        "max": 6
+    }
+}

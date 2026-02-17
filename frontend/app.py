@@ -87,8 +87,7 @@ with left_column:
     if uploaded_file is not None:
 
         st.image(uploaded_file, caption="Uploaded Shelf Image", width="stretch")
-
-        if st.button("Analyze Shelf"):
-            with st.spinner("Analyzing..."):
-                with right_column:
-                    call_backend_API(API_URL, uploaded_file, store_id, aisle_id, timestamp)
+        with right_column:
+            if st.button("Analyze Shelf"):
+                with st.spinner("Running analysis..."):
+                        call_backend_API(API_URL, uploaded_file, store_id, aisle_id, timestamp)
