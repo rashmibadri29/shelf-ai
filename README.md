@@ -20,12 +20,15 @@ FastAPI (backend) and Streamlit (frontend).
 ## Project Status
 v1.0.0 — Stable API and UI with dummy inference.
 v1.1.0 - Complete YOLO-CLIP inference pipeline with aggregation logic
+v1.2.0 - Shelf analysis pipeline (YOLO + CLIP + LLM)
 
 ## Before you Run
 Head to [Google AI Studio](https://ai.google.dev/gemini-api/docs/api-key) and generate an API key. 
-Add GOOGLE API KEY to environment variable by running script:
+To add GOOGLE_API_KEY to environment, follow these steps:
+1. Create a .env file in shelfsense_ai directory
+2. Enter the following line and save file
 ```bash
-python add_google_api_key.py
+GOOGLE_API_KEY="<YOUR API KEY>"
 ```
 
 ## How to Run
