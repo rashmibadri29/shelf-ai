@@ -1,9 +1,12 @@
-import torch
-import open_clip
 from PIL import Image
 import numpy as np
 import os
 from collections import defaultdict
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+
+import torch
+import open_clip
+import faiss
 
 def load_clip_model():
     ''' 
@@ -14,7 +17,11 @@ def load_clip_model():
                  tokenizer (callable): The tokenizer associated with the CLIP model variant.
                  device (str): The device (CPU or GPU) on which the model is running.
     '''
-    device = "cuda" if torch.cuda.is_available() else "cpu" # Decides whether to run on GPU or CPU
+    if torch.cuda.is_available():
+        device = "cuda"  
+    elif torch.backends.mps.is_available():
+        device = "mps"
+    else: device = "cpu" # Decides whether to run on GPU or CPU
 
     # Load the CLIP model and preprocessing transforms for the specified variant
     model, preprocess, _ = open_clip.create_model_and_transforms(
@@ -50,6 +57,21 @@ def embed_image(image: Image.Image, model, preprocess, device) -> np.ndarray:
     
     return emb.cpu().numpy()[0]  # Move to CPU, convert to numpy, remove batch dimension
 
+def embed_image_batch(images, model, preprocess, device):
+    """
+    Convert list of PIL images to CLIP embeddings in one batch
+    """
+    image_tensors = torch.stack([
+        preprocess(img) for img in images
+    ]).to(device)
+
+    with torch.no_grad():
+        emb = model.encode_image(image_tensors)
+
+    emb = emb / emb.norm(dim=-1, keepdim=True)
+
+    return emb.cpu().numpy()
+
 def embed_text(text: str, model, tokenizer, device) -> np.ndarray:
     '''
     Converts a text string into a CLIP embedding vector by tokenizing the input text and forwarding it through the CLIP text encoder.
@@ -68,6 +90,7 @@ def embed_text(text: str, model, tokenizer, device) -> np.ndarray:
 
     return emb.cpu().numpy()[0]
 
+
 class EmbeddingStore:
     '''
     A simple in-memory store for CLIP embeddings and their associated metadata, with functionality to save/load from disk 
@@ -76,51 +99,60 @@ class EmbeddingStore:
     def __init__(self):
         self.embeddings = []   # List of vectors
         self.metadata = []     # Parallel list of metadata dicts
+        self.index = None 
 
     def add(self, embedding: np.ndarray, meta: dict): 
         # Add a new embedding and its associated metadata to the store, ensuring that the embedding is stored as a numpy array and that the metadata is aligned by index.
-        self.embeddings.append(embedding)
+        self.embeddings.append(embedding.astype("float32"))
         self.metadata.append(meta)     # Keep embeddings and metadata aligned by index
         
-    def as_matrix(self) -> np.ndarray: 
-        # Stack all stored embeddings into a single matrix for efficient similarity search.
-        return np.vstack(self.embeddings)  # Shape: (num_items, embedding_dim)
+    def build_index(self):
+        # Builds a vector index of the added embeddings
+        matrix = np.vstack(self.embeddings).astype("float32")
+        dim = matrix.shape[1]
+
+        self.index = faiss.IndexFlatIP(dim)  # cosine similarity
+        self.index.add(matrix)
 
     def save_to_disk(self, filepath: str):
         # Save the embeddings and their associated metadata to disk in a compressed .npz format, allowing for later retrieval and use in similarity searches.
+        matrix = np.vstack(self.embeddings).astype("float32")
+
         np.savez_compressed(
             filepath,
-            embeddings=self.as_matrix(),
+            embeddings=matrix,
             metadata=self.metadata
         )
     
     def load_from_disk(self, filepath: str):
         # Load embeddings and their associated metadata from a compressed .npz file on disk, restoring the in-memory store for use in similarity searches.
         data = np.load(filepath, allow_pickle=True)
-        self.embeddings = [emb for emb in data['embeddings']]
+
+        self.embeddings = [emb.astype("float32") for emb in data['embeddings']]
         self.metadata = data['metadata'].tolist()
+
+        self.build_index()
         
 def similarity_search(query_emb: np.ndarray, store: EmbeddingStore, top_k: int = 5):
-    ''' 
-    Performs a similarity search by computing the cosine similarity between a query embedding and all stored embeddings, returning the top-K most similar items along with their metadata.
-    Args:        query_emb (np.ndarray): The embedding vector for the query item (image or text).
-                store (EmbeddingStore): The in-memory store containing embeddings and their associated metadata.
-                top_k (int): The number of top similar items to return based on cosine similarity scores.
-    Returns:    results (list): A list of dictionaries containing the top-K most similar items and their metadata.
     '''
-    matrix = store.as_matrix()    # Stack all stored embeddings into a single matrix
+    Finds the most similar product for a batch of product embeddings from Embedding store given as vector index. 
+    Args:
+        query_emb (np.ndarray): A batch of image embeddings 
+        store (EmbeddingStore): EmbeddingStore object of stored CLIP embeddings
+        top_k (int): Number of best matching/most relevant products to return
+    Returns: results (list): A list of matched products and their scores
+    '''
+    query = np.expand_dims(query_emb.astype("float32"), axis=0)
 
-    scores = matrix @ query_emb  # Dot product = cosine similarity (because vectors are normalized)
-    
-    top_idx = np.argsort(scores)[-top_k:][::-1]  # Get indices of top-K highest similarity scores
+    scores, indices = store.index.search(query, top_k)
 
     results = []
-    for idx in top_idx:
-        # Combine similarity score with product metadata for each of the top-K matches and append to results list
+
+    for rank, idx in enumerate(indices[0]):
         results.append({
-            "score": float(scores[idx]),
+            "score": float(scores[0][rank]),
             **store.metadata[idx]
-        })            
+        })
 
     return results
 
@@ -170,10 +202,21 @@ def create_and_store_embeddings(filepath: str):
     for file in files:
         img = Image.open(file).convert('RGB')
         img_emb = embed_image(img, model, preprocess, device)
-        text_emb = embed_text(f"{os.path.splitext(os.path.basename(file))[0]}", model, tokenizer, device)
-        store.add(img_emb, {"product_name": os.path.splitext(os.path.basename(file))[0], "description": f"Image embedding for {os.path.splitext(os.path.basename(file))[0]}"})
-        store.add(text_emb, {"product_name": os.path.splitext(os.path.basename(file))[0], "description": f"Text embedding for {os.path.splitext(os.path.basename(file))[0]}"})
+        
+        product_name = os.path.splitext(os.path.basename(file))[0]
+        text_emb = embed_text(product_name, model, tokenizer, device)
 
+        # Combine image + text embeddings
+        combined_emb = (img_emb + text_emb) / 2
+        combined_emb = combined_emb / np.linalg.norm(combined_emb)
+
+        store.add(
+            combined_emb,
+            {
+                "product_name": product_name,
+                "description": f"Combined embedding for {product_name}"
+            }
+        )
     print(f"Created embeddings for {len(store.embeddings)} images.")
 
     if os.path.isfile(filepath):
@@ -217,6 +260,29 @@ class CLIP_similarity_checker:
         if best_score < 0.3:  # Threshold for "no good match"
             return "Unknown Product", 0.0
         return best_product, best_score
+
+    def search_embeddings_batch(self, images, top_k=5):
+        ''' Searches for the most similar products in the embedding store based on a given a batch of images, 
+        returning the best matching product and similarity score for each image. '''
+        img_embeddings = embed_image_batch(
+            images,
+            self.model,
+            self.preprocess,
+            self.device
+        )
+
+        results = []
+
+        for emb in img_embeddings:
+            matches = similarity_search(emb, self.store, top_k)
+            best_product, best_score = aggregate_matches(matches)
+            
+            if best_score < 0.4:
+                results.append(("Unknown Product", 0.0))
+            else:
+                results.append((best_product, best_score))
+
+        return results
 
     def numpy_to_pillow(self, img_array: np.ndarray) -> Image.Image:
         return Image.fromarray((img_array * 255).astype(np.uint8))

@@ -2,7 +2,7 @@ from typing import List, Dict
 from ultralytics import YOLO
 import numpy as np
 import cv2
-
+import torch
 
 class DetectProducts:
     ''' 
@@ -11,6 +11,10 @@ class DetectProducts:
     '''
     def __init__(self, model_weights:str = "yolov8n.pt") -> None:
         self.model = YOLO(model_weights)  # Load the pre-trained YOLO model
+        if torch.cuda.is_available():
+            self.model.to("cuda")
+        elif torch.backends.mps.is_available():
+            self.model.to("mps")
 
     def __call__(self, image_array: np.ndarray) -> (np.array, List[Dict]):
         ''' Takes an input image as a NumPy array, performs object detection using the YOLO model, and returns the original image 
@@ -20,8 +24,9 @@ class DetectProducts:
         a detected product with its bounding box coordinates, confidence score, and class label.
         '''
         self.image_array = image_array
-        # Perform YOLOv8 inference on the input image
-        detections = self.model(self.image_array, conf=0.01)  # Adjust confidence threshold as needed    
+        
+        # Perform YOLOv8 inference on the input imaged
+        detections = self.model(self.image_array, conf=0.01, iou=0.3, imgsz=640)  # Adjust confidence threshold as needed    
         
         # Initialize list to hold detection results
         self.results = []
@@ -32,13 +37,16 @@ class DetectProducts:
             label = f"{self.model.names[int(box.cls[0])]}"
             confidence = f"{box.conf[0]:.2f}"
             self.results.append([x1, y1, x2, y2, box.conf[0].item(), self.model.names[int(box.cls[0])]])
-            
-        return self.image_array, self.results
+        
+        (height, width) = detections[0].orig_shape
+        self.resized_image = cv2.resize(self.image_array, (width,height), interpolation=cv2.INTER_AREA)
+
+        return self.resized_image, self.results
 
     def display_image(self):
         ''' Displays the image with detected products using OpenCV.'''
         # Display the image using OpenCV
-        cv2.imshow('Input image', self.image_array)
+        cv2.imshow('Input image', self.resized_image)
         
         # Wait for a key press and then close the window
         cv2.waitKey(0)
@@ -55,7 +63,7 @@ class DetectProducts:
         crops = []
         for det in self.results:
             x1, y1, x2, y2 = det[:4]
-            crop = self.image_array[y1:y2, x1:x2]
+            crop = self.resized_image[y1:y2, x1:x2]
             crops.append(crop)
         return crops
 
@@ -68,7 +76,7 @@ class DetectProducts:
             x1, y1, x2, y2 = box[:4]
             label = f"{box[5]}"
             confidence = f"{box[4]:.2f}"
-            img_with_detections = cv2.rectangle(self.image_array, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            img_with_detections = cv2.rectangle(self.resized_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
             img_with_detections = cv2.putText(img_with_detections, label, (x1+2, y1 +15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
             img_with_detections = cv2.putText(img_with_detections, confidence, (x1+2, y1 +35), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
         return img_with_detections

@@ -1,6 +1,7 @@
 from services.yolo_vision import DetectProducts
 from services.clip_product_matching import CLIP_similarity_checker
 import cv2
+import time
 
 def yolo_clip_inference(image_array):
     ''' 
@@ -10,12 +11,11 @@ def yolo_clip_inference(image_array):
     Returns:    detected_products (list): A list of detected products with their bounding box coordinates.
                 PM_results (list): A list of tuples containing matched product names and their confidence scores for each detected product crop.
     '''
-
     # Perform YOLO inference to detect products and get bounding boxes
     detect_products = DetectProducts()
     
-    image_with_detections, detected_products = detect_products(image_array)
-    
+    resized_image, detected_products = detect_products(image_array)
+
     if not detected_products:
         print("No products detected.")
         return {"error": "No products detected."}
@@ -25,16 +25,28 @@ def yolo_clip_inference(image_array):
 
     # Perform CLIP similarity search for each crop to identify products
     product_matcher = CLIP_similarity_checker("data/clip_embeddings/embeddings.npz")
-
+    
     # Initialize a list to hold the product matching results
     PM_results = []
-    # For each crop, perform a similarity search against the CLIP embedding store to find the best matching product and its confidence score
-    for crop in crops:
-        pillow_crop = product_matcher.numpy_to_pillow(crop)  # Convert NumPy array to PIL Image
-        matched_product, confidence_score = product_matcher.search_embeddings(pillow_crop)
-        PM_results.append([matched_product, confidence_score])
 
-    return detected_products, PM_results
+    # Create a batch of crops
+    pillow_crops = [
+        product_matcher.numpy_to_pillow(crop)
+        for crop in crops
+    ]
+
+    # Perform similarity search against the CLIP embedding store to find the best matching product and its confidence score for the batch of crops
+    batch_results = product_matcher.search_embeddings_batch(pillow_crops)
+
+    # Iterate through batch results to extract individual crop results
+    for i, (matched_product, confidence_score) in enumerate(batch_results):
+        PM_results.append([
+            matched_product,
+            confidence_score,
+            detected_products[i][:4]
+        ])
+
+    return resized_image, detected_products, PM_results
 
 def display_results(img, PD_results, PM_results, items_categories=["almond milk", "oat milk", "greek yogurt", "milk",  "yogurt", "cheese", "cream", "butter", "juice", "spread", "kefir", "drink"]):
     ''' 
@@ -56,7 +68,7 @@ def display_results(img, PD_results, PM_results, items_categories=["almond milk"
             img = cv2.putText(img, f"{found_words[0]}", (detection[0]+2,detection[1]+15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
             img = cv2.putText(img, f"{match[1]:.2f}", (detection[0]+2,detection[1]+35), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
     cv2.imshow('YOLO + CLIP Inference', img)
-    cv2.waitKey(0)
+    cv2.waitKey(5000)
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":

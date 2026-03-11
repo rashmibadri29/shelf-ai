@@ -5,3 +5,5 @@ python-multipart
 ultralytics
 torch
 open_clip_torch
+langchain-google-genai
+faiss-cpu
